@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fd974a35-5b39-42b8-b371-66818af6ce1a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/smtpClient.py" beforeDir="false" afterPath="$PROJECT_DIR$/smtpClient.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
