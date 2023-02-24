@@ -7,6 +7,9 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
 
     # Choose a mail server (e.g. Google mail server) if you want to verify the script beyond GradeScope
 
+    # with smtplib can use something the following smtp_server = smtplib.SMTP(smtp_server, ####) but using the
+    # following for now in terminal `python3 -m smtpd -c DebuggingServer -n 127.0.0.1:1025`
+
     # Create socket called clientSocket and establish a TCP connection with mailserver and port
 
     #like the tcp server but with mailserver
