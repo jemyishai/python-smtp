@@ -22,8 +22,8 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     #    print('220 reply not received from server.')
 
     # Send HELO command and print server response.
-    hello = 'HELO Alice\r\n'
-    clientSocket.send(hello.encode())
+    heloCommand = 'HELO Alice\r\n'
+    clientSocket.send(heloCommand.encode())
     recv1 = clientSocket.recv(1024).decode()
     #print(recv1)
     #if recv1[:3] != '250':
@@ -32,15 +32,24 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     # Send MAIL FROM command and handle server response.
     # Fill in start
     # Fill in end
-    mailOut = 'MAIL FROM <jm9632@nyu.edu>\r\n'
+    mailOut = 'MAIL FROM <jessemoskowitz@nypl.org>\r\n'
     clientSocket.send(mailOut.encode()) # do I need to use that 'rb' type?? no right?
     recv2 = clientSocket.recv(1024).decode()
 
     # Send RCPT TO command and handle server response.
     # Fill in start
+    readReceipt = "RCPT TO: <someoneatNYU@nyu.edu>\r\n"
+    clientSocket.send(readReceipt.endcode())
+    recv3 = clientSocket.recv(1024)
+    # print('RR sent')
     # Fill in end
 
     # Send DATA command and handle server response.
+    data = "DATA is everyones fav Star Trek character\r\n"
+    clientSocket.send(readReceipt.endcode())
+    recv4 = clientSocket.recv(1024)
+    recv4 = recv4.decode()
+    #print('HERE ________ after DATA sent/recvd')
     # Fill in start
     # Fill in end
 
