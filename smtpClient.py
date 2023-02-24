@@ -36,23 +36,22 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     # Fill in start
     # Fill in end
     mailOut = 'MAIL FROM <jessemoskowitz@nypl.org>\r\n'
-    clientSocket.send(mailOut.encode()) # do I need to use that 'rb' type?? no right?
+    clientSocket.send(mailOut.encode()) # do I need to use that 'rb' type?? no right? encode just turns str to bytes
     recv2 = clientSocket.recv(1024).decode()
 
     # Send RCPT TO command and handle server response.
     # Fill in start
     readReceipt = "RCPT TO: <someoneatNYU@nyu.edu>\r\n"
     clientSocket.send(readReceipt.encode())
-    recv3 = clientSocket.recv(1024)
-    # print('RR sent')
+    recv3 = clientSocket.recv(1024).decode()
+    #print('RR sent' + recv3)
     # Fill in end
 
     # Send DATA command and handle server response.
-    data = "DATA is everyones fav Star Trek character\r\n"
-    clientSocket.send(readReceipt.encode())
-    recv4 = clientSocket.recv(1024)
-    recv4 = recv4.decode()
-    #print('HERE ________ after DATA sent/recvd')
+    data = "DATA\r\n"
+    clientSocket.send(data.encode())
+    recv4 = clientSocket.recv(1024).decode()
+    #print('HERE ________ after DATA sent/recvd' + recv4)
     # Fill in start
     # Fill in end
 
@@ -61,7 +60,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     clientSocket.send(subject.encode())
     clientSocket.send(msg.encode())
     recv5 = clientSocket.recv(1024)
-    #print('HERE ------------ MSG')
+    #print('HERE ------------ MSG'+recv5)
     # Fill in start
     # Fill in end
 
