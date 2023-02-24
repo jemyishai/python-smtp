@@ -14,7 +14,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
 
     #like the tcp server but with mailserver
     clientSocket = socket(AF_INET,SOCK_STREAM)
-    clientSocket.connect(mailserver)
+    clientSocket.connect((mailserver,port))
 
     # Fill in start
     # Fill in end
@@ -42,14 +42,14 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     # Send RCPT TO command and handle server response.
     # Fill in start
     readReceipt = "RCPT TO: <someoneatNYU@nyu.edu>\r\n"
-    clientSocket.send(readReceipt.endcode())
+    clientSocket.send(readReceipt.encode())
     recv3 = clientSocket.recv(1024)
     # print('RR sent')
     # Fill in end
 
     # Send DATA command and handle server response.
     data = "DATA is everyones fav Star Trek character\r\n"
-    clientSocket.send(readReceipt.endcode())
+    clientSocket.send(readReceipt.encode())
     recv4 = clientSocket.recv(1024)
     recv4 = recv4.decode()
     #print('HERE ________ after DATA sent/recvd')
@@ -68,7 +68,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     # Message ends with a single period, send message end and handle server response.
     # Fill in start
     #newline = '\r\n'
-    clientSocket.send(endmsg)
+    clientSocket.send(endmsg.encode())
     # Fill in end
 
     # Send QUIT command and handle server response.
