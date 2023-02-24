@@ -9,6 +9,10 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
 
     # Create socket called clientSocket and establish a TCP connection with mailserver and port
 
+    #like the tcp server but with mailserver
+    clientSocket = socket(AF_INET,SOCK_STREAM )
+    clientSocket.connect(mailserver)
+
     # Fill in start
     # Fill in end
 
@@ -18,8 +22,8 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     #    print('220 reply not received from server.')
 
     # Send HELO command and print server response.
-    heloCommand = 'HELO Alice\r\n'
-    clientSocket.send(heloCommand.encode())
+    hello = 'HELO Alice\r\n'
+    clientSocket.send(hello.encode())
     recv1 = clientSocket.recv(1024).decode()
     #print(recv1)
     #if recv1[:3] != '250':
@@ -28,6 +32,9 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     # Send MAIL FROM command and handle server response.
     # Fill in start
     # Fill in end
+    mailOut = 'MAIL FROM <jm9632@nyu.edu>\r\n'
+    clientSocket.send(mailOut.encode()) # do I need to use that 'rb' type?? no right?
+    recv2 = clientSocket.recv(1024).decode()
 
     # Send RCPT TO command and handle server response.
     # Fill in start
