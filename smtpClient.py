@@ -13,7 +13,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     # Create socket called clientSocket and establish a TCP connection with mailserver and port
 
     #like the tcp server but with mailserver
-    clientSocket = socket(AF_INET,SOCK_STREAM )
+    clientSocket = socket(AF_INET,SOCK_STREAM)
     clientSocket.connect(mailserver)
 
     # Fill in start
@@ -57,15 +57,27 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     # Fill in end
 
     # Send message data.
+    subject = "Sujet \r\n\r\n"
+    clientSocket.send(subject.encode())
+    clientSocket.send(msg.encode())
+    recv5 = clientSocket.recv(1024)
+    #print('HERE ------------ MSG')
     # Fill in start
     # Fill in end
 
     # Message ends with a single period, send message end and handle server response.
     # Fill in start
+    #newline = '\r\n'
+    clientSocket.send(endmsg)
     # Fill in end
 
     # Send QUIT command and handle server response.
     # Fill in start
+    QUIT = "QUIT\r\n"
+    clientSocket.send(QUIT.encode())
+    recv6 = clientSocket.recv(1024)
+    #print(recv5.decode())
+    clientSocket.close()
     # Fill in end
 
 
